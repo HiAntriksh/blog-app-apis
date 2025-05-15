@@ -8,7 +8,11 @@
 		<version>3.4.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+<<<<<<< HEAD
 	<groupId>com.codewithantriksh.blog</groupId>
+=======
+	<groupId>com.codewithdurgesh.blog</groupId>
+>>>>>>> 6922f9c (commit)
 	<artifactId>blog-app-apis</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>blog-app-apis</name>
@@ -55,6 +59,17 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+<<<<<<< HEAD
+=======
+		
+		
+		<!-- https://mvnrepository.com/artifact/org.modelmapper/modelmapper -->
+<dependency>
+    <groupId>org.modelmapper</groupId>
+    <artifactId>modelmapper</artifactId>
+    <version>3.2.3</version>
+</dependency>
+>>>>>>> 6922f9c (commit)
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
