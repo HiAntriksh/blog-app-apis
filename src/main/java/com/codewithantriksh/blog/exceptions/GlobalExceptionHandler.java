@@ -1,6 +1,5 @@
 package com.codewithantriksh.blog.exceptions;
 
-<<<<<<< HEAD
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,10 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-=======
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
->>>>>>> b5765cf392e12a19c21e642106696e2585c13d56
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -25,7 +22,6 @@ public class GlobalExceptionHandler {
         String message = ex.getMessage();
         ApiResponse apiResponse = new ApiResponse(message, false);
         return new ResponseEntity<ApiResponse>(apiResponse, HttpStatus.NOT_FOUND);
-<<<<<<< HEAD
         
     }
 
@@ -43,7 +39,5 @@ public class GlobalExceptionHandler {
     }
 
 
-=======
     }
->>>>>>> b5765cf392e12a19c21e642106696e2585c13d56
-}
+
