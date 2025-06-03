@@ -16,6 +16,7 @@ import com.codewithantriksh.blog.entities.Post;
 import com.codewithantriksh.blog.entities.User;
 import com.codewithantriksh.blog.exceptions.ResourceNotFoundException;
 import com.codewithantriksh.blog.payloads.PostDto;
+import com.codewithantriksh.blog.payloads.PostResponse;
 import com.codewithantriksh.blog.repositories.CategoryRepo;
 import com.codewithantriksh.blog.repositories.PostRepo;
 import com.codewithantriksh.blog.repositories.UserRepo;
@@ -56,18 +57,17 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public PostDto updatePost(PostDto postDto, Integer postId)
-	{
+	public PostDto updatePost(PostDto postDto, Integer postId) {
 
 		Post post = this.postRepo.findById(postId)
 				.orElseThrow(() -> new ResourceNotFoundException("Post", "post id", postId));
-	
-				post.setTitle(postDto.getTitle());
-				post.setContent(postDto.getContent());
-				post.setImageName(postDto.getImageName());
-				
-				Post updatedPost = this.postRepo.save(post);
-				return this.modelMapper.map(updatedPost, PostDto.class);
+
+		post.setTitle(postDto.getTitle());
+		post.setContent(postDto.getContent());
+		post.setImageName(postDto.getImageName());
+
+		Post updatedPost = this.postRepo.save(post);
+		return this.modelMapper.map(updatedPost, PostDto.class);
 	}
 
 	@Override
@@ -79,19 +79,27 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public List<PostDto> getAllPost(Integer pageNumber, Integer pageSize) {
-		
+	public PostResponse getAllPost(Integer pageNumber, Integer pageSize) {
+
 		/*
 		 * int pageSize=5; int pageNumber=1;
 		 */
-		Pageable p=PageRequest.of(pageNumber, pageSize);
-		
-	 Page<Post> pagePost = this.postRepo.findAll(p);
-	 List<Post> allPosts = pagePost.getContent();
-		
+		Pageable p = PageRequest.of(pageNumber, pageSize);
+
+		Page<Post> pagePost = this.postRepo.findAll(p);
+		List<Post> allPosts = pagePost.getContent();
+
 		List<PostDto> postDtos = allPosts.stream().map((post) -> this.modelMapper.map(post, PostDto.class))
 				.collect(Collectors.toList());
-		return postDtos;
+		PostResponse postResponse = new PostResponse();
+
+		postResponse.setContent(postDtos);
+		postResponse.setPageNumber(pagePost.getNumber());
+		postResponse.setPageSize(pagePost.getSize());
+		postResponse.setTotalElemets(pagePost.getTotalElements());
+		postResponse.setTotalPages(pagePost.getTotalPages());
+		postResponse.setLastPage(pagePost.isLast());
+		return postResponse;
 	}
 
 	@Override

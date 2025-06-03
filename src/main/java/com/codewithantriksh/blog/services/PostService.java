@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.codewithantriksh.blog.entities.Post;
 import com.codewithantriksh.blog.payloads.PostDto;
+import com.codewithantriksh.blog.payloads.PostResponse;
 
 public interface PostService {
 
@@ -21,7 +22,7 @@ public interface PostService {
 
 	// get all posts
 
-	List<PostDto> getAllPost(Integer pageNumber, Integer pageSize);
+	PostResponse getAllPost(Integer pageNumber, Integer pageSize);
 
 	// get single post
 
